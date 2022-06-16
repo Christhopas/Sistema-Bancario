@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.9">
+ <project-name>SistemaBancarioFinal</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="cf1a440d-6d5b-4045-9350-d1ed4ff2712f" name="empregados" objectType="TABLE" physicalName="empregados" >
+   <remarks>Tabela que registrará os empregados.</remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="8256da6b-c6e9-48e2-8235-8e0d306d431b" autoIncrement="false" autoIncrementSequenceName="empregados_matricula_seq" defaultValue="" name="matricula" nullable="0" physicalName="matricula" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>PK da tabela. armazenará os numeros únicos correspondes a matricula de cada empregado.</remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="95013c03-6f7a-42dd-8598-27c6a117092c" autoIncrement="false" autoIncrementSequenceName="empregados_nome_completo_seq" defaultValue="" name="nome_completo" nullable="0" physicalName="nome_completo" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Campo que registrará o nome completo de cada funcionário.</remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="d2165aa0-e599-4a4d-b32d-3a7475a219ba" autoIncrement="false" autoIncrementSequenceName="empregados_logradouro_seq" defaultValue="" name="logradouro" nullable="0" physicalName="logradouro" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Armazenará o logradouro de cada funcionário.</remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="dcd91966-5884-4e9f-9a04-73e50072ec37" autoIncrement="false" autoIncrementSequenceName="empregados_salario_seq" defaultValue="" name="salario" nullable="0" physicalName="salario" precision="9" referenceCount="1" scale="2" sourceDataTypeName="UserDefinedSQLType" type="3" userDefinedTypeUUID="cc1304ea-628a-4fc5-a84a-06ba14759152" >
+     <remarks>Campo que registrará o salário de cada funcionário.</remarks>
+    </column>
+    <column id="COL6" populated="true" UUID="0cf8fba6-3b17-4683-8d1f-3c877100308c" autoIncrement="false" autoIncrementSequenceName="empregados_complemento_end_seq" defaultValue="" name="complemento_end" nullable="1" physicalName="complemento_end" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Complemento para cada endereço.</remarks>
+    </column>
+    <column id="COL7" populated="true" UUID="ed8809d2-f2ca-4545-abd5-01abc9886141" autoIncrement="false" autoIncrementSequenceName="empregados_numero_log_seq" defaultValue="" name="numero_log" nullable="0" physicalName="numero_log" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Armazenará os números de cada logradouro.</remarks>
+    </column>
+    <column id="COL8" populated="true" UUID="1b8cde73-6c4e-40e6-94a9-06f2a69dd6ff" autoIncrement="false" autoIncrementSequenceName="cargo_cod_cargo_seq" defaultValue="" name="cod_cargo" nullable="0" physicalName="cod_cargo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>FK para a tabela cargo. armazenará os códigos únicos referentes a cada cargo disponível.</remarks>
+    </column>
+    <column id="COL9" populated="true" UUID="dbdb17c2-4d26-4df6-8596-75b6a94f9305" autoIncrement="false" autoIncrementSequenceName="cep_cep_seq" defaultValue="" name="cep" nullable="0" physicalName="cep" precision="8" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Registrará o cep de cada funcionário.</remarks>
+    </column>
+    <column id="COL10" populated="true" UUID="571dfe45-d8a4-49fd-bb48-05bdebcdb557" autoIncrement="false" autoIncrementSequenceName="uf_sigla_uf_seq" defaultValue="" name="sigla_uf" nullable="0" physicalName="sigla_uf" precision="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Armazenará a sigla de cada uf.</remarks>
+    </column>
+    <column id="COL11" populated="true" UUID="f40f229d-c11d-4b2d-b37b-647def84171d" autoIncrement="false" autoIncrementSequenceName="bairro_cod_bairro_seq" defaultValue="" name="cod_bairro" nullable="0" physicalName="cod_bairro" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Armazenará o código exclusivo de cada bairro.</remarks>
+    </column>
+    <column id="COL12" populated="true" UUID="e5f0690d-9b18-430f-bee6-60178009c1f9" autoIncrement="false" autoIncrementSequenceName="cidade_cod_cidade_seq" defaultValue="" name="cod_cidade" nullable="0" physicalName="cod_cidade" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código exclusivo de cada cidade.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX13" populated="true" UUID="b12123ee-2a9e-49bd-9a55-784bbfd0fa7d" clustered="false" name="empregados_pk" physicalName="empregados_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC14" populated="true" UUID="10beb5e1-a630-4d64-9a0c-dfcaec87f18a" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="matricula" physicalName="matricula" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB15" populated="true" UUID="d77fecd9-685b-41e8-960b-6d5ea061b9da" name="cargo" objectType="TABLE" physicalName="cargo" >
+   <remarks></remarks>
+   <folder id="FOLTAB151" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL16" populated="true" UUID="d0e0b271-fd61-4dd0-ba42-b579581486b2" autoIncrement="false" autoIncrementSequenceName="cargo_cod_cargo_seq" defaultValue="" name="cod_cargo" nullable="0" physicalName="cod_cargo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>PK da tabela. armazenará os códigos únicos referentes a cada cargo disponível.</remarks>
+    </column>
+    <column id="COL17" populated="true" UUID="760a442c-dec8-4698-8f9e-7d64ddaf7063" autoIncrement="false" autoIncrementSequenceName="cargo_nome_cargo_seq" defaultValue="" name="nome_cargo" nullable="0" physicalName="nome_cargo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Registrará os nomes dos cargos disponiveis.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB153" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB152" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB154" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX18" populated="true" UUID="79b90eef-376e-40cb-b0ec-c975a61afddb" clustered="false" name="cargo_pk" physicalName="cargo_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC19" populated="true" UUID="ff05e59c-c054-4111-8b4e-fa2f053272e8" ascendingOrDescending="UNSPECIFIED" column-ref="COL16" name="cod_cargo" physicalName="cod_cargo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB20" populated="true" UUID="539388e7-0abd-4da4-8f30-1067bbf84e1e" name="cep" objectType="TABLE" physicalName="cep" >
+   <remarks>Armazenará o cep de cada funcionário.</remarks>
+   <folder id="FOLTAB201" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL21" populated="true" UUID="8696b0a3-27b1-4718-a8a9-a3dfcd85c44a" autoIncrement="false" autoIncrementSequenceName="cep_cep_seq" defaultValue="" name="cep" nullable="0" physicalName="cep" precision="8" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Registrará o cep de cada funcionário.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB203" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB202" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB204" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX22" populated="true" UUID="8763d819-61de-4332-a67d-1e310fcf5249" clustered="false" name="cep_pk" physicalName="cep_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC23" populated="true" UUID="91047be6-12c9-414d-a65e-4c91502ee190" ascendingOrDescending="UNSPECIFIED" column-ref="COL21" name="cep" physicalName="cep" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB24" populated="true" UUID="8b5c7620-b53a-4194-af7e-3d52ea188948" name="bairro" objectType="TABLE" physicalName="bairro" >
+   <remarks>Armazenará o bairro de cada funcionário.</remarks>
+   <folder id="FOLTAB241" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL25" populated="true" UUID="746a7f8b-773d-4e58-8201-23a21d984616" autoIncrement="false" autoIncrementSequenceName="bairro_cod_bairro_seq" defaultValue="" name="cod_bairro" nullable="0" physicalName="cod_bairro" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Armazenará o código exclusivo de cada bairro.</remarks>
+    </column>
+    <column id="COL26" populated="true" UUID="1750ee23-03b7-4fd7-baae-5319e940a939" autoIncrement="false" autoIncrementSequenceName="bairro_nome_bairro_seq" defaultValue="" name="nome_bairro" nullable="0" physicalName="nome_bairro" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome de cada bairro.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB243" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB242" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB244" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX27" populated="true" UUID="98de1b6e-d924-411b-9145-2e91d08c00fe" clustered="false" name="bairro_pk" physicalName="bairro_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC28" populated="true" UUID="395d9b0d-17af-40b3-b46b-0597e5cdd98d" ascendingOrDescending="UNSPECIFIED" column-ref="COL25" name="cod_bairro" physicalName="cod_bairro" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB29" populated="true" UUID="63bbb9b9-ca88-44c4-93cd-6d396d98183b" name="uf" objectType="TABLE" physicalName="uf" >
+   <remarks>Armazenará a uf de cada funcionário.</remarks>
+   <folder id="FOLTAB291" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL30" populated="true" UUID="1edd88fc-5c8d-4040-930e-d16339cfacb5" autoIncrement="false" autoIncrementSequenceName="uf_sigla_uf_seq" defaultValue="" name="sigla_uf" nullable="0" physicalName="sigla_uf" precision="2" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Armazenará a sigla de cada uf.</remarks>
+    </column>
+    <column id="COL31" populated="true" UUID="56de2b99-73ee-4167-a810-4e43d75c1510" autoIncrement="false" autoIncrementSequenceName="uf_nome_estado_seq" defaultValue="" name="nome_estado" nullable="0" physicalName="nome_estado" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Armazenará o nome por extenso de cada estado.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB293" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB292" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB294" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX32" populated="true" UUID="4634987a-ae7d-469e-b73c-a8237a83bc60" clustered="false" name="uf_pk" physicalName="uf_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC33" populated="true" UUID="c37a1e0f-f9d1-4302-8cde-7b2a4e035ff2" ascendingOrDescending="UNSPECIFIED" column-ref="COL30" name="sigla_uf" physicalName="sigla_uf" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB34" populated="true" UUID="c54e264b-7b23-489f-8123-1596ad2608f6" name="cidade" objectType="TABLE" physicalName="cidade" >
+   <remarks>Armazenará a cidade de cada funcionário.</remarks>
+   <folder id="FOLTAB341" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL35" populated="true" UUID="db70b4fb-42a3-4750-8654-4c5da29f06ff" autoIncrement="false" autoIncrementSequenceName="cidade_cod_cidade_seq" defaultValue="" name="cod_cidade" nullable="0" physicalName="cod_cidade" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código exclusivo de cada cidade.</remarks>
+    </column>
+    <column id="COL36" populated="true" UUID="d1bb9c25-3685-498c-9964-619b1ba30898" autoIncrement="false" autoIncrementSequenceName="cidade_nome_cidade_seq" defaultValue="" name="nome_cidade" nullable="0" physicalName="nome_cidade" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da cada cidade.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB343" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB342" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB344" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX37" populated="true" UUID="464b2980-1d92-4ade-8dda-64c8797ea929" clustered="false" name="cidade_pk" physicalName="cidade_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC38" populated="true" UUID="a541fd33-1e9a-4378-9b7d-90ffb289acba" ascendingOrDescending="UNSPECIFIED" column-ref="COL35" name="cod_cidade" physicalName="cod_cidade" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB39" populated="true" UUID="921584ad-fd45-43d3-8125-0fa264120c91" name="Contas" objectType="TABLE" physicalName="Contas" >
+   <remarks>Armazenará as contas de cada cliente.</remarks>
+   <folder id="FOLTAB391" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL40" populated="true" UUID="425ded27-60a8-4215-87ff-3b9ce15164cb" autoIncrement="false" autoIncrementSequenceName="Contas_numero_conta_seq" defaultValue="" name="numero_conta" nullable="0" physicalName="numero_conta" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>PK da tabela. Irá registrar os números exclusivos de cada conta.</remarks>
+    </column>
+    <column id="COL41" populated="true" UUID="3457f154-e834-4ed6-872b-2d04e5e1f64f" autoIncrement="false" autoIncrementSequenceName="Contas_cpf_cliente_seq" defaultValue="" name="cpf_cliente" nullable="0" physicalName="cpf_cliente" precision="11" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>PK da tabela.  Irá registrar o cpf dos clientes.</remarks>
+    </column>
+    <column id="COL42" populated="true" UUID="76e36d3f-1bc6-459a-bec0-10e47f319510" autoIncrement="false" autoIncrementSequenceName="Contas_senha_seq" defaultValue="" name="senha" nullable="0" physicalName="senha" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Senha da conta do cliente.</remarks>
+    </column>
+    <column id="COL43" populated="true" UUID="52824df2-e892-42d3-9639-66bea8a86088" autoIncrement="false" autoIncrementSequenceName="Contas_data_abertura_seq" defaultValue="" name="data_abertura" nullable="0" physicalName="data_abertura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>Data da abertura da conta do cliente.</remarks>
+    </column>
+    <column id="COL44" populated="true" UUID="680580c0-c03e-4ecd-bbbc-aeda0eef37dd" autoIncrement="false" autoIncrementSequenceName="Contas_saldo_seq" defaultValue="" name="saldo" nullable="0" physicalName="saldo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Saldo da conta do cliente.</remarks>
+    </column>
+    <column id="COL45" populated="true" UUID="c334f8ba-eb51-4890-9021-59919cd600d2" autoIncrement="false" autoIncrementSequenceName="Contas_limite_credito_seq" defaultValue="" name="limite_credito" nullable="0" physicalName="limite_credito" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Limite de credito da conta do cliente.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB393" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB392" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB394" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX46" populated="true" UUID="64846353-68a5-4af4-999f-cbec8c923b43" clustered="false" name="Contas_pk" physicalName="Contas_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC47" populated="true" UUID="078e8657-0839-42ff-a38e-d01a007a8666" ascendingOrDescending="UNSPECIFIED" column-ref="COL40" name="numero_conta" physicalName="numero_conta" />
+     <index-column id="IDC48" populated="true" UUID="98bc1a52-0a86-4c7c-a422-379b72fc2f5c" ascendingOrDescending="UNSPECIFIED" column-ref="COL41" name="cpf_cliente" physicalName="cpf_cliente" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL49" populated="true" UUID="11dce466-c58f-43e0-8062-7a72e3196241" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="cargo_empregados_fk" physicalName="cargo_empregados_fk" pk-table-ref="TAB15" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP50" populated="true" UUID="4cb76374-c45f-424f-8171-34dfb4129636" fk-column-ref="COL8" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL16" />
+   </relationship>
+   <relationship id="REL51" populated="true" UUID="dfdfce48-c948-4053-9186-128a8ed9759a" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="cep_empregados_fk" physicalName="cep_empregados_fk" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP52" populated="true" UUID="418877f2-6b4f-4605-b7b3-26a7709e13ce" fk-column-ref="COL9" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
+   </relationship>
+   <relationship id="REL53" populated="true" UUID="dd81acd3-665c-4865-bb18-f7678f10286e" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="bairro_empregados_fk" physicalName="bairro_empregados_fk" pk-table-ref="TAB24" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP54" populated="true" UUID="c7eed2fe-435d-4175-bacb-3539cb733b2c" fk-column-ref="COL11" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL25" />
+   </relationship>
+   <relationship id="REL55" populated="true" UUID="25f66701-b528-4d13-a758-e4bf78547b79" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="uf_empregados_fk" physicalName="uf_empregados_fk" pk-table-ref="TAB29" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP56" populated="true" UUID="56b5be2f-a99e-46d8-a946-bf261b36a550" fk-column-ref="COL10" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL30" />
+   </relationship>
+   <relationship id="REL57" populated="true" UUID="bfb80d19-d1bc-498c-823f-e6e918648e10" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="cidade_empregados_fk" physicalName="cidade_empregados_fk" pk-table-ref="TAB34" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP58" populated="true" UUID="6ef5ad35-7020-43b5-9e9a-a53018454470" fk-column-ref="COL12" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL35" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.GenericDDLGenerator" allow-connection="true"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="527" y="383" bgColor="0xf6bcbc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB15" x="121" y="586" bgColor="0xe6d794" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB20" x="151" y="269" bgColor="0xc8b7ea" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB24" x="285" y="187" bgColor="0xb9bbf6" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB29" x="677" y="20" bgColor="0xc7d0df" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB34" x="489" y="103" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB39" x="1029" y="290" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL49" pkConnection="0.7420494699646644" fkConnection="0.6404494382022472" rLineColor="0x2e3436" pkLabelText="" fkLabelText="" orientation="40"/>
+  <table-link relationship-ref="REL51" pkConnection="0.5301724137931034" fkConnection="0.06191950464396285" rLineColor="0x2e3436" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL55" pkConnection="0.4309210526315789" fkConnection="0.9226006191950464" rLineColor="0x2e3436" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL53" pkConnection="0.3979933110367893" fkConnection="0.23219814241486067" rLineColor="0x2e3436" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL57" pkConnection="0.3432343234323432" fkConnection="0.544891640866873" rLineColor="0x2e3436" pkLabelText="" fkLabelText="" orientation="132"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>
