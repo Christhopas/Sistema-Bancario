@@ -1,4 +1,81 @@
+/* --------------------------------------------------------------------------- */
+/* CRIA USUÁRIO E BANCO DE DADOS:                                              */
+/* --------------------------------------------------------------------------- */
+/* Primeiramente precisamos criar o  usuário "bancoadmin"                      */
+/*  e o banco de dados "sistema_bancario".                                     */
+/* --------------------------------------------------------------------------- */
 
+-- Cria o usuário "bancoadmin", que será o dono do banco de dados "sistema_bancario". Por
+-- segurança esse usuário não será um super-usuário. E, claro, como este é um
+-- script de demonstração, usaremos a super-senha "123456".
+\echo
+\echo Criando o usuário "bancoadmin":
+CREATE USER bancoadmin WITH
+  NOSUPERUSER
+  CREATEDB
+  CREATEROLE
+  LOGIN
+  ENCRYPTED PASSWORD '123456'
+;
+
+-- Agora que o usuário já está criado, vamos criar o banco de dados "uvv" e
+-- colocar o usuário "vinicius" como o dono desse banco de dados. Além disso
+-- configuraremos algumas opções de linguagem para o português do Brasil.
+\echo
+\echo Criando o banco de dados "uvv":
+CREATE DATABASE sistema_bancario WITH
+  owner      = bancoadmin
+  template   = template0
+  encoding   = 'UTF-8'
+  lc_collate = 'pt_BR.UTF-8'
+  lc_ctype   = 'pt_BR.UTF-8'
+;
+
+COMMENT ON DATABASE sistema_bancario IS 'Banco de dados do sistema bancario';
+
+
+
+/* --------------------------------------------------------------------------- */
+/* CONEXÃO AO BANCO SISTEMA_BANCARIO E CRIAÇÃO DO SCHEMA BANCO:                */
+/* --------------------------------------------------------------------------- */
+/* Com o usuário e o banco prontos, faremos a conexão ao banco "sistema_bancario" */
+/* com o usuário "bancoadmin" e criaremos o schema "banco". Também ajustaremos */
+/* o SEARCH_PATH do usuário para manter o scheme "banco" como o padrão.        */
+/* --------------------------------------------------------------------------- */
+
+-- Conexão ao banco "sistema_bancario" como usuário "bancoadmin", passando a senha via string
+-- de conexão. Obviamente isso só está sendo feito porque é um script de
+-- demonstração, não se deve passar senhas em scripts em formato texto puro
+-- (existem exceções, claro, mas considere que essa regra é válida na maioria
+-- das vezes).
+\echo
+\echo Conectando ao novo banco de dados:
+\c "dbname=sistema_bancario user=bancoadmin password=123456"
+
+-- Criação do schema "banco".
+\echo
+\echo Criando e configurando o schema "banco":
+CREATE SCHEMA banco AUTHORIZATION bancoadmin;
+COMMENT ON SCHEMA banco IS 'Schema para o db Sistema Bancario.';
+
+-- Configura o SEARCH_PATH do usuário bancoadmin.
+ALTER USER bancoadmin SET SEARCH_PATH TO banco, "$user", public;
+
+-- Ajusta o SEARCH_PATH da conexão atual ao banco de dados.
+SET SEARCH_PATH TO banco, "$user", public;
+
+
+
+/* --------------------------------------------------------------------------- */
+/* SERVIÇOS:                                                                */
+/* --------------------------------------------------------------------------- */
+/* Nesta seção faremos a criação da tabela "servicos" e dos demais objetos     */
+/* relacionados (constraints, chaves, checks, etc.).                           */
+/* --------------------------------------------------------------------------- */
+
+-- Cria a tabela "servicos".
+\echo
+\echo Criando a tabela "servicos" e objetos relacionados:
 CREATE TABLE servicos (
                 cod_servico INTEGER NOT NULL,
                 nome_servico VARCHAR(100) NOT NULL,
@@ -8,6 +85,8 @@ CREATE TABLE servicos (
                 fim_vigencia DATE,
                 CONSTRAINT pk_servicos PRIMARY KEY (cod_servico)
 );
+
+-- Comentários da tabela "servicos".
 COMMENT ON TABLE servicos IS 'Tabela que armazena os serviços das agências';
 COMMENT ON COLUMN servicos.cod_servico IS 'PK da tabela. Código de referencia do serviço.';
 COMMENT ON COLUMN servicos.nome_servico IS 'Nome do serviço.';
@@ -17,6 +96,17 @@ COMMENT ON COLUMN servicos.inicio_vigencia IS 'Data do início da vigência do s
 COMMENT ON COLUMN servicos.fim_vigencia IS 'Data do fim da vigência do serviço.';
 
 
+
+/* --------------------------------------------------------------------------- */
+/* SERVIÇOS:                                                                */
+/* --------------------------------------------------------------------------- */
+/* Nesta seção faremos a criação da tabela "servicos" e dos demais objetos     */
+/* relacionados (constraints, chaves, checks, etc.).                           */
+/* --------------------------------------------------------------------------- */
+
+-- Cria a tabela "servicos".
+\echo
+\echo Criando a tabela "servicos" e objetos relacionados:
 CREATE TABLE contratos (
                 numero_contrato INTEGER NOT NULL,
                 data_assinatura DATE NOT NULL,
@@ -323,8 +413,8 @@ CREATE TABLE lotacoes (
                 numero_agencia INTEGER NOT NULL,
                 num_banco CHAR(3) NOT NULL,
                 funcao_desempenhada VARCHAR(100) NOT NULL,
-                dias_trabalho INTEGER NOT NULL,
-                horas_trabalho INTEGER NOT NULL,
+                dias_tralhados DATE NOT NULL,
+                horas_trabalhadas VARCHAR NOT NULL,
                 CONSTRAINT pk_lotacoes PRIMARY KEY (matricula, numero_agencia, num_banco)
 );
 COMMENT ON TABLE lotacoes IS 'Tabela N:N que irá armazenar a função desempenhada, dias de trabalho e os horários de trabalho.';
@@ -332,8 +422,8 @@ COMMENT ON COLUMN lotacoes.matricula IS 'FK da tabela empregados. Por se tratar 
 COMMENT ON COLUMN lotacoes.numero_agencia IS 'PFK da tabela agencias. Número da agência.';
 COMMENT ON COLUMN lotacoes.num_banco IS 'PFK da tabela agencias. Número identificador do banco, composto por 3 dígitos numéricos.';
 COMMENT ON COLUMN lotacoes.funcao_desempenhada IS 'Função que o empregado irá desempenhar dentro do banco.';
-COMMENT ON COLUMN lotacoes.dias_trabalho IS 'Número de dias na semana trabalhados por cada empregado.';
-COMMENT ON COLUMN lotacoes.horas_trabalho IS 'Quantidade de horas  na semana trabalhadas por cada empregado.';
+COMMENT ON COLUMN lotacoes.dias_tralhados IS 'Dias trabalhados por cada empregado.';
+COMMENT ON COLUMN lotacoes.horas_trabalhadas IS 'Quantidade de horas trabalhadas por cada empregado.';
 
 
 CREATE TABLE telefone_agencia (
@@ -586,6 +676,13 @@ NOT DEFERRABLE;
 
 ALTER TABLE agencias ADD CONSTRAINT banco_agencias_fk
 FOREIGN KEY (num_banco, cnpj_sede)
+REFERENCES banco (num_banco, cnpj)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE raz_soc_banco ADD CONSTRAINT banco_raz_soc_banco_fk
+FOREIGN KEY (num_banco, cnpj)
 REFERENCES banco (num_banco, cnpj)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
