@@ -1,3 +1,31 @@
+/* =========================================================================== */
+/* Implementação do projeto lógico do projeto conceitual                       */
+/* cujo tema era Sistema Bancário.                                             */
+/* =========================================================================== */
+
+
+
+/* --------------------------------------------------------------------------- */
+/* LIMPEZA GERAL:                                                              */
+/* --------------------------------------------------------------------------- */
+/* Esta seção do script faz uma "limpeza geral" no banco de dados, removendo o */
+/* banco de dados "sistema_bancario", se ele existir, e o usuário "bancoadmin" */
+/* , se ele existir. Obviamente você só deve remover os comentários das linhas */
+/* abaixo se você REALMENTE quiser apagar o banco de dados e o usuário.        */
+/* --------------------------------------------------------------------------- */
+
+-- Remove o banco de dados "sistema_bancario", se existir:
+\echo
+\echo Removendo o banco de dados "sistema_bancario":
+DROP DATABASE IF EXISTS sistema_bancario;
+
+-- Remove o usuário "bancoadmin", se existir:
+\echo
+\echo Removendo o usuário "bancoadmin":
+DROP USER IF EXISTS bancoadmin;
+
+
+
 /* --------------------------------------------------------------------------- */
 /* CRIA USUÁRIO E BANCO DE DADOS:                                              */
 /* --------------------------------------------------------------------------- */
@@ -18,8 +46,8 @@ CREATE USER bancoadmin WITH
   ENCRYPTED PASSWORD '123456'
 ;
 
--- Agora que o usuário já está criado, vamos criar o banco de dados "uvv" e
--- colocar o usuário "vinicius" como o dono desse banco de dados. Além disso
+-- Agora que o usuário já está criado, vamos criar o banco de dados "sistema_bancario" e
+-- colocar o usuário "bancoadmin" como o dono desse banco de dados. Além disso
 -- configuraremos algumas opções de linguagem para o português do Brasil.
 \echo
 \echo Criando o banco de dados "sistema_bancario":
@@ -35,13 +63,13 @@ COMMENT ON DATABASE sistema_bancario IS 'Banco de dados do Sistema Bancario';
 
 
 
-/* --------------------------------------------------------------------------- */
-/* CONEXÃO AO BANCO SISTEMA_BANCARIO E CRIAÇÃO DO SCHEMA BANCO:                */
-/* --------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------ */
+/* CONEXÃO AO BANCO SISTEMA_BANCARIO E CRIAÇÃO DO SCHEMA BANCO:                   */
+/* ------------------------------------------------------------------------------ */
 /* Com o usuário e o banco prontos, faremos a conexão ao banco "sistema_bancario" */
-/* com o usuário "bancoadmin" e criaremos o schema "banco". Também ajustaremos */
-/* o SEARCH_PATH do usuário para manter o scheme "banco" como o padrão.        */
-/* --------------------------------------------------------------------------- */
+/* com o usuário "bancoadmin" e criaremos o schema "banco". Também ajustaremos    */
+/* o SEARCH_PATH do usuário para manter o scheme "banco" como o padrão.           */
+/* ------------------------------------------------------------------------------ */
 
 -- Conexão ao banco "sistema_bancario" como usuário "bancoadmin", passando a senha via string
 -- de conexão. Obviamente isso só está sendo feito porque é um script de
@@ -67,7 +95,7 @@ SET SEARCH_PATH TO banco, "$user", public;
 
 
 /* --------------------------------------------------------------------------- */
-/* SERVIÇOS:                                                                */
+/* SERVIÇOS:                                                                   */
 /* --------------------------------------------------------------------------- */
 /* Nesta seção faremos a criação da tabela "servicos" e dos demais objetos     */
 /* relacionados (constraints, chaves, checks, etc.).                           */
@@ -130,7 +158,7 @@ COMMENT ON COLUMN contratos.cod_servico      IS 'FK da tabela servicos. Código 
 /* --------------------------------------------------------------------------- */
 /* CARGO:                                                                      */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "cargo" e dos demais objetos    */
+/* Nesta seção faremos a criação da tabela "cargo" e dos demais objetos        */
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
@@ -150,9 +178,9 @@ COMMENT ON COLUMN cargo.nome_cargo IS 'Nome do cargo correspondente ao código d
 
 
 /* --------------------------------------------------------------------------- */
-/* UF:                                                                      */
+/* UF:                                                                         */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "uf" e dos demais objetos    */
+/* Nesta seção faremos a criação da tabela "uf" e dos demais objetos           */
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
@@ -173,9 +201,9 @@ COMMENT ON COLUMN uf.nome_uf IS 'Nome por extenso da UF.';
 
 
 /* --------------------------------------------------------------------------- */
-/* BAIRRO:                                                                      */
+/* BAIRRO:                                                                     */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "bairro" e dos demais objetos    */
+/* Nesta seção faremos a criação da tabela "bairro" e dos demais objetos       */
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
@@ -196,9 +224,9 @@ COMMENT ON COLUMN bairro.nome_bairro IS 'Nome dos bairros cadastrados.';
 
 
 /* --------------------------------------------------------------------------- */
-/* CEP:                                                                      */
+/* CEP:                                                                        */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "cep" e dos demais objetos    */
+/* Nesta seção faremos a criação da tabela "cep" e dos demais objetos          */
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
@@ -217,9 +245,9 @@ COMMENT ON COLUMN cep.cep IS 'PK da tabela. CEP do endereço.';
 
 
 /* --------------------------------------------------------------------------- */
-/* CIDADE:                                                                      */
+/* CIDADE:                                                                     */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "cidade" e dos demais objetos    */
+/* Nesta seção faremos a criação da tabela "cidade" e dos demais objetos       */
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
@@ -240,9 +268,9 @@ COMMENT ON COLUMN cidade.nome_cidade IS 'Nome das cidade cadastradas.';
 
 
 /* --------------------------------------------------------------------------- */
-/* CLIENTE:                                                                      */
+/* CLIENTE:                                                                    */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "cliente" e dos demais objetos    */
+/* Nesta seção faremos a criação da tabela "cliente" e dos demais objetos      */
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
@@ -368,7 +396,7 @@ COMMENT ON COLUMN historico.cod_servico  IS 'PFK da tabela servicos. Código de 
 /* --------------------------------------------------------------------------- */
 /* EMPRESTIMO:                                                                 */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "emprestimo" e dos demais               */
+/* Nesta seção faremos a criação da tabela "emprestimo" e dos demais           */
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
@@ -396,7 +424,7 @@ COMMENT ON COLUMN emprestimo.cod_cliente    IS 'FK da tabela. Código identifica
 /* --------------------------------------------------------------------------- */
 /* PARCELA:                                                                    */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "parcela" e dos demais               */
+/* Nesta seção faremos a criação da tabela "parcela" e dos demais              */
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
@@ -472,9 +500,9 @@ COMMENT ON COLUMN juros.valor_juros    IS 'Valor dos juros.';
 
 
 /* --------------------------------------------------------------------------- */
-/* PAGAMENTO:                                                                      */
+/* PAGAMENTO:                                                                  */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "pagamento" e dos demais                */
+/* Nesta seção faremos a criação da tabela "pagamento" e dos demais            */
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
@@ -657,7 +685,7 @@ COMMENT ON COLUMN agencias_servico.cod_servico    IS 'PFK da tabela. Código de 
 /* --------------------------------------------------------------------------- */
 /* LOTAÇÕES:                                                                   */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "lotacoes" e dos demais    */
+/* Nesta seção faremos a criação da tabela "lotacoes" e dos demais             */
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
@@ -669,8 +697,8 @@ CREATE TABLE lotacoes (
                 numero_agencia INTEGER NOT NULL,
                 num_banco CHAR(3) NOT NULL,
                 funcao_desempenhada VARCHAR(100) NOT NULL,
-                dias_tralhados DATE NOT NULL,
-                horas_trabalhadas VARCHAR NOT NULL,
+                dias_trabalho INTEGER NOT NULL,
+                horas_trabalho INTEGER NOT NULL,
                 CONSTRAINT pk_lotacoes PRIMARY KEY (matricula, numero_agencia, num_banco),
                 CONSTRAINT chk_lotacoes CHECK (dias_trabalho > 0 AND dias_trabalho < 6 AND horas_trabalho > 0 AND horas_trabalho > 7 AND horas_trabalho < 45)
 );
@@ -681,8 +709,8 @@ COMMENT ON COLUMN lotacoes.matricula           IS 'FK da tabela empregados. Por 
 COMMENT ON COLUMN lotacoes.numero_agencia      IS 'PFK da tabela agencias. Número da agência.';
 COMMENT ON COLUMN lotacoes.num_banco           IS 'PFK da tabela agencias. Número identificador do banco, composto por 3 dígitos numéricos.';
 COMMENT ON COLUMN lotacoes.funcao_desempenhada IS 'Função que o empregado irá desempenhar dentro do banco.';
-COMMENT ON COLUMN lotacoes.dias_tralhados      IS 'Dias trabalhados por cada empregado.';
-COMMENT ON COLUMN lotacoes.horas_trabalhadas   IS 'Quantidade de horas trabalhadas por cada empregado.';
+COMMENT ON COLUMN lotacoes.dias_trabalho       IS 'Dias trabalhados por cada empregado.';
+COMMENT ON COLUMN lotacoes.horas_trabalho      IS 'Quantidade de horas trabalhadas por cada empregado.';
 
 
 
@@ -712,9 +740,9 @@ COMMENT ON COLUMN telefone_agencia.num_banco      IS 'PFK da tabela agencia. Nú
 
 
 /* --------------------------------------------------------------------------- */
-/* TELEFONE BANCO:                                                           */
+/* TELEFONE BANCO:                                                             */
 /* --------------------------------------------------------------------------- */
-/* Nesta seção faremos a criação da tabela "telefone_banco" e dos demais     */
+/* Nesta seção faremos a criação da tabela "telefone_banco" e dos demais       */
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
@@ -961,13 +989,6 @@ NOT DEFERRABLE;
 
 ALTER TABLE agencias ADD CONSTRAINT banco_agencias_fk
 FOREIGN KEY (num_banco, cnpj_sede)
-REFERENCES banco (num_banco, cnpj)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE raz_soc_banco ADD CONSTRAINT banco_raz_soc_banco_fk
-FOREIGN KEY (num_banco, cnpj)
 REFERENCES banco (num_banco, cnpj)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
