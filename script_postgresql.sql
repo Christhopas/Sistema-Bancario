@@ -263,7 +263,8 @@ CREATE TABLE cliente (
                 cod_bairro INTEGER NOT NULL,
                 cod_cidade INTEGER NOT NULL,
                 uf CHAR(2) NOT NULL,
-                CONSTRAINT pk_cliente PRIMARY KEY (cod_cliente)
+                CONSTRAINT pk_cliente PRIMARY KEY (cod_cliente),
+                CONSTRAINT chk_cliente CHECK (sexo IN ('M', 'F'))
 );
 
 -- Comentários da tabela "cliente".
@@ -325,7 +326,8 @@ CREATE TABLE contas (
                 saldo INTEGER NOT NULL,
                 limite_credito INTEGER NOT NULL,
                 cod_cliente INTEGER NOT NULL,
-                CONSTRAINT pk_contas PRIMARY KEY (numero_conta)
+                CONSTRAINT pk_contas PRIMARY KEY (numero_conta),
+                CONSTRAINT chk_contas CHECK (limite_credito > 0)
 );
 
 -- Comentários da tabela "contas".
@@ -377,7 +379,8 @@ CREATE TABLE emprestimo (
                 data_aquisicao DATE NOT NULL,
                 valor NUMERIC(10,2) NOT NULL,
                 cod_cliente INTEGER NOT NULL,
-                CONSTRAINT emprestimo_pk PRIMARY KEY (cod_emprestimo)
+                CONSTRAINT emprestimo_pk PRIMARY KEY (cod_emprestimo),
+                CONSTRAINT chk_emprestimo CHECK (valor > 0)
 );
 
 -- Comentários da tabela "emprestimo".
@@ -516,7 +519,8 @@ CREATE TABLE empregados (
                 cod_cidade INTEGER NOT NULL,
                 uf CHAR(2) NOT NULL,
                 matricula_gerente INTEGER,
-                CONSTRAINT empregados_pk PRIMARY KEY (matricula)
+                CONSTRAINT empregados_pk PRIMARY KEY (matricula),
+                CONSTRAINT chk_empregados CHECK (salario > 0)
 );
 
 -- Comentários da tabela "empregados".
@@ -662,7 +666,8 @@ CREATE TABLE lotacoes (
                 funcao_desempenhada VARCHAR(100) NOT NULL,
                 dias_tralhados DATE NOT NULL,
                 horas_trabalhadas VARCHAR NOT NULL,
-                CONSTRAINT pk_lotacoes PRIMARY KEY (matricula, numero_agencia, num_banco)
+                CONSTRAINT pk_lotacoes PRIMARY KEY (matricula, numero_agencia, num_banco),
+                CONSTRAINT chk_lotacoes CHECK (dias_trabalho > 0 AND dias_trabalho < 6 AND horas_trabalho > 0 AND horas_trabalho > 7 AND horas_trabalho < 45)
 );
 
 -- Comentários da tabela "lotacoes".
