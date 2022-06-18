@@ -323,8 +323,8 @@ CREATE TABLE lotacoes (
                 numero_agencia INTEGER NOT NULL,
                 num_banco CHAR(3) NOT NULL,
                 funcao_desempenhada VARCHAR(100) NOT NULL,
-                dias_tralhados DATE NOT NULL,
-                horas_trabalhadas VARCHAR NOT NULL,
+                dias_trabalho INTEGER NOT NULL,
+                horas_trabalho INTEGER NOT NULL,
                 CONSTRAINT pk_lotacoes PRIMARY KEY (matricula, numero_agencia, num_banco)
 );
 COMMENT ON TABLE lotacoes IS 'Tabela N:N que irá armazenar a função desempenhada, dias de trabalho e os horários de trabalho.';
@@ -332,8 +332,8 @@ COMMENT ON COLUMN lotacoes.matricula IS 'FK da tabela empregados. Por se tratar 
 COMMENT ON COLUMN lotacoes.numero_agencia IS 'PFK da tabela agencias. Número da agência.';
 COMMENT ON COLUMN lotacoes.num_banco IS 'PFK da tabela agencias. Número identificador do banco, composto por 3 dígitos numéricos.';
 COMMENT ON COLUMN lotacoes.funcao_desempenhada IS 'Função que o empregado irá desempenhar dentro do banco.';
-COMMENT ON COLUMN lotacoes.dias_tralhados IS 'Dias trabalhados por cada empregado.';
-COMMENT ON COLUMN lotacoes.horas_trabalhadas IS 'Quantidade de horas trabalhadas por cada empregado.';
+COMMENT ON COLUMN lotacoes.dias_trabalho IS 'Número de dias na semana trabalhados por cada empregado.';
+COMMENT ON COLUMN lotacoes.horas_trabalho IS 'Quantidade de horas  na semana trabalhadas por cada empregado.';
 
 
 CREATE TABLE telefone_agencia (
@@ -586,13 +586,6 @@ NOT DEFERRABLE;
 
 ALTER TABLE agencias ADD CONSTRAINT banco_agencias_fk
 FOREIGN KEY (num_banco, cnpj_sede)
-REFERENCES banco (num_banco, cnpj)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE raz_soc_banco ADD CONSTRAINT banco_raz_soc_banco_fk
-FOREIGN KEY (num_banco, cnpj)
 REFERENCES banco (num_banco, cnpj)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
