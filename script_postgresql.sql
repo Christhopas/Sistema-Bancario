@@ -83,7 +83,8 @@ CREATE TABLE servicos (
                 valor_min NUMERIC(10,2),
                 inicio_vigencia DATE,
                 fim_vigencia DATE,
-                CONSTRAINT pk_servicos PRIMARY KEY (cod_servico)
+                CONSTRAINT pk_servicos PRIMARY KEY (cod_servico),
+                CONSTRAINT chk_servicos CHECK (valor_min > 0 AND fim_vigencia > inicio_vigencia)
 );
 
 -- Comentários da tabela "servicos".
@@ -407,7 +408,8 @@ CREATE TABLE parcela (
                 numero_parcela INTEGER NOT NULL,
                 valor NUMERIC(10,2) NOT NULL,
                 data_vencimento DATE NOT NULL,
-                CONSTRAINT parcela_pk PRIMARY KEY (cod_emprestimo, numero_parcela)
+                CONSTRAINT parcela_pk PRIMARY KEY (cod_emprestimo, numero_parcela),
+                CONSTRAINT chk_parcela CHECK (valor > 0)
 );
 
 -- Comentários da tabela "parcela".
@@ -431,7 +433,8 @@ CREATE TABLE multa (
                 cod_emprestimo INTEGER NOT NULL,
                 numero_parcela INTEGER NOT NULL,
                 valor_multa NUMERIC(10,2) NOT NULL,
-                CONSTRAINT multa_pk PRIMARY KEY (cod_emprestimo, numero_parcela)
+                CONSTRAINT multa_pk PRIMARY KEY (cod_emprestimo, numero_parcela),
+                CONSTRAINT chk_multa CHECK (valor_multa > 0)
 );
 
 -- Comentários da tabela "multa".
@@ -456,7 +459,8 @@ CREATE TABLE juros (
                 cod_emprestimo INTEGER NOT NULL,
                 numero_parcela INTEGER NOT NULL,
                 valor_juros NUMERIC(10,2) NOT NULL,
-                CONSTRAINT juros_pk PRIMARY KEY (cod_emprestimo, numero_parcela)
+                CONSTRAINT juros_pk PRIMARY KEY (cod_emprestimo, numero_parcela),
+                CONSTRAINT chk_juros CHECK (valor_juros > 0)
 );
 
 -- Comentários da tabela "juros".
@@ -482,7 +486,8 @@ CREATE TABLE pagamento (
                 numero_parcela INTEGER NOT NULL,
                 data_vencimento DATE NOT NULL,
                 data_pagamento DATE NOT NULL,
-                CONSTRAINT pagamento_pk PRIMARY KEY (cod_emprestimo, numero_parcela)
+                CONSTRAINT pagamento_pk PRIMARY KEY (cod_emprestimo, numero_parcela),
+                CONSTRAINT chk_pagamento CHECK (data_vencimento > data_pagamento)
 );
 
 -- Comentários da tabela "pagamento".
