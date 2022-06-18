@@ -31,7 +31,7 @@ CREATE DATABASE sistema_bancario WITH
   lc_ctype   = 'pt_BR.UTF-8'
 ;
 
-COMMENT ON DATABASE sistema_bancario IS 'Banco de dados do sistema bancario';
+COMMENT ON DATABASE sistema_bancario IS 'Banco de dados do Sistema Bancario';
 
 
 
