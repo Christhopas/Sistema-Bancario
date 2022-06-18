@@ -22,7 +22,7 @@ CREATE USER bancoadmin WITH
 -- colocar o usuário "vinicius" como o dono desse banco de dados. Além disso
 -- configuraremos algumas opções de linguagem para o português do Brasil.
 \echo
-\echo Criando o banco de dados "uvv":
+\echo Criando o banco de dados "sistema_bancario":
 CREATE DATABASE sistema_bancario WITH
   owner      = bancoadmin
   template   = template0
