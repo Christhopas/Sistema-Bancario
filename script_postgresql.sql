@@ -703,11 +703,19 @@ COMMENT ON COLUMN banco.uf              IS 'FK da tabela uf. Sigla da UF.';
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "agencias_seq".
+CREATE SEQUENCE IF NOT EXISTS agencias_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "agencias".
 \echo
 \echo Criando a tabela "agencias" e objetos relacionados:
 CREATE TABLE agencias (
-                numero_agencia INTEGER NOT NULL,
+                numero_agencia INTEGER NOT NULL DEFAULT nextval('agencias_seq'),
                 num_banco CHAR(3) NOT NULL,
                 nome_agencia VARCHAR(100) NOT NULL,
                 logradouro VARCHAR(150) NOT NULL,
