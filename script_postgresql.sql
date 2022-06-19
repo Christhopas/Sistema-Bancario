@@ -101,18 +101,26 @@ SET SEARCH_PATH TO banco, "$user", public;
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "servicos_seq".
+CREATE SEQUENCE IF NOT EXISTS servicos_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "servicos".
 \echo
 \echo Criando a tabela "servicos" e objetos relacionados:
 CREATE TABLE servicos (
-                cod_servico INTEGER NOT NULL,
+                cod_servico INTEGER NOT NULL DEFAULT nextval('servicos_seq'),
                 nome_servico VARCHAR(100) NOT NULL,
                 descricao VARCHAR(100) NOT NULL,
                 valor_min NUMERIC(10,2),
                 inicio_vigencia DATE,
                 fim_vigencia DATE,
                 CONSTRAINT pk_servicos PRIMARY KEY (cod_servico),
-                CONSTRAINT chk_servicos CHECK (valor_min > 0 AND fim_vigencia > inicio_vigencia)
+                CONSTRAINT chk_servicos CHECK (valor_min > 0 AND fim_vigencia >= inicio_vigencia)
 );
 
 -- Comentários da tabela "servicos".
@@ -133,11 +141,19 @@ COMMENT ON COLUMN servicos.fim_vigencia    IS 'Data do fim da vigência do servi
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "contratos_seq".
+CREATE SEQUENCE IF NOT EXISTS contratos_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "contratos".
 \echo
 \echo Criando a tabela "contratos" e objetos relacionados:
 CREATE TABLE contratos (
-                numero_contrato INTEGER NOT NULL,
+                numero_contrato INTEGER NOT NULL DEFAULT nextval('contratos_seq'),
                 data_assinatura DATE NOT NULL,
                 resp_contratante VARCHAR(100) NOT NULL,
                 resp_contratada VARCHAR(100) NOT NULL,
@@ -162,11 +178,19 @@ COMMENT ON COLUMN contratos.cod_servico      IS 'FK da tabela servicos. Código 
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "cargo_seq".
+CREATE SEQUENCE IF NOT EXISTS cargo_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "cargo".
 \echo
 \echo Criando a tabela "cargo" e objetos relacionados:
 CREATE TABLE cargo (
-                cod_cargo INTEGER NOT NULL,
+                cod_cargo INTEGER NOT NULL DEFAULT nextval('cargo_seq'),
                 nome_cargo VARCHAR NOT NULL,
                 CONSTRAINT pk_cargo PRIMARY KEY (cod_cargo)
 );
@@ -207,11 +231,19 @@ COMMENT ON COLUMN uf.nome_uf IS 'Nome por extenso da UF.';
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "bairro_seq".
+CREATE SEQUENCE IF NOT EXISTS bairro_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "bairro".
 \echo
 \echo Criando a tabela "bairro" e objetos relacionados:
 CREATE TABLE bairro (
-                cod_bairro INTEGER NOT NULL,
+                cod_bairro INTEGER NOT NULL DEFAULT nextval('bairro_seq'),
                 nome_bairro VARCHAR(100) NOT NULL,
                 CONSTRAINT pk_bairro PRIMARY KEY (cod_bairro)
 );
@@ -251,11 +283,19 @@ COMMENT ON COLUMN cep.cep IS 'PK da tabela. CEP do endereço.';
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "cidade_seq".
+CREATE SEQUENCE IF NOT EXISTS cidade_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "cidade".
 \echo
 \echo Criando a tabela "cidade" e objetos relacionados:
 CREATE TABLE cidade (
-                cod_cidade INTEGER NOT NULL,
+                cod_cidade INTEGER NOT NULL DEFAULT nextval('cidade_seq'),
                 nome_cidade VARCHAR(100) NOT NULL,
                 CONSTRAINT pk_cidade PRIMARY KEY (cod_cidade)
 );
@@ -274,11 +314,19 @@ COMMENT ON COLUMN cidade.nome_cidade IS 'Nome das cidade cadastradas.';
 /* relacionados (constraints, chaves, checks, etc.).                           */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "cliente_seq".
+CREATE SEQUENCE IF NOT EXISTS cliente_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "cliente".
 \echo
 \echo Criando a tabela "cliente" e objetos relacionados:
 CREATE TABLE cliente (
-                cod_cliente INTEGER NOT NULL,
+                cod_cliente INTEGER NOT NULL DEFAULT nextval('cliente_seq'),
                 primeiro_nome VARCHAR(100) NOT NULL,
                 nome_meio CHAR(1),
                 ultimo_nome VARCHAR(100) NOT NULL,
@@ -345,11 +393,19 @@ COMMENT ON COLUMN cliente_servicos.cod_servico IS 'PFK da tabela servicos. Códi
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "contas_seq".
+CREATE SEQUENCE IF NOT EXISTS contas_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "contas".
 \echo
 \echo Criando a tabela "contas" e objetos relacionados:
 CREATE TABLE contas (
-                numero_conta INTEGER NOT NULL,
+                numero_conta INTEGER NOT NULL DEFAULT nextval('contas_seq'),
                 senha VARCHAR NOT NULL,
                 data_abertura DATE NOT NULL,
                 saldo INTEGER NOT NULL,
@@ -400,11 +456,19 @@ COMMENT ON COLUMN historico.cod_servico  IS 'PFK da tabela servicos. Código de 
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "emprestimo_seq".
+CREATE SEQUENCE IF NOT EXISTS emprestimo_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "emprestimo".
 \echo
 \echo Criando a tabela "emprestimo" e objetos relacionados:
 CREATE TABLE emprestimo (
-                cod_emprestimo INTEGER NOT NULL,
+                cod_emprestimo INTEGER NOT NULL DEFAULT nextval('emprestimo_seq'),
                 data_aquisicao DATE NOT NULL,
                 valor NUMERIC(10,2) NOT NULL,
                 cod_cliente INTEGER NOT NULL,
@@ -428,12 +492,20 @@ COMMENT ON COLUMN emprestimo.cod_cliente    IS 'FK da tabela. Código identifica
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "parcela_seq".
+CREATE SEQUENCE IF NOT EXISTS parcela_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "parcela".
 \echo
 \echo Criando a tabela "parcela" e objetos relacionados:
 CREATE TABLE parcela (
                 cod_emprestimo INTEGER NOT NULL,
-                numero_parcela INTEGER NOT NULL,
+                numero_parcela INTEGER NOT NULL DEFAULT nextval('parcela_seq'),
                 valor NUMERIC(10,2) NOT NULL,
                 data_vencimento DATE NOT NULL,
                 CONSTRAINT parcela_pk PRIMARY KEY (cod_emprestimo, numero_parcela),
@@ -515,7 +587,7 @@ CREATE TABLE pagamento (
                 data_vencimento DATE NOT NULL,
                 data_pagamento DATE NOT NULL,
                 CONSTRAINT pagamento_pk PRIMARY KEY (cod_emprestimo, numero_parcela),
-                CONSTRAINT chk_pagamento CHECK (data_vencimento > data_pagamento)
+                CONSTRAINT chk_pagamento CHECK (data_vencimento >= data_pagamento)
 );
 
 -- Comentários da tabela "pagamento".
@@ -534,11 +606,19 @@ COMMENT ON COLUMN pagamento.data_pagamento  IS 'Data de pagamento do empréstimo
 /* objetos relacionados (constraints, chaves, checks, etc.).                   */
 /* --------------------------------------------------------------------------- */
 
+--Cria a sequência "empregados_seq".
+CREATE SEQUENCE IF NOT EXISTS empregados_seq
+	INCREMENT 1
+	MINVALUE 1
+	MAXVALUE 999999999999
+	START 1
+	CACHE 1;
+
 -- Cria a tabela "empregados".
 \echo
 \echo Criando a tabela "empregados" e objetos relacionados:
 CREATE TABLE empregados (
-                matricula INTEGER NOT NULL,
+                matricula INTEGER NOT NULL DEFAULT nextval('empregados_seq'),
                 primeiro_nome VARCHAR(100) NOT NULL,
                 nome_meio CHAR(1),
                 ultimo_nome VARCHAR(100) NOT NULL,
