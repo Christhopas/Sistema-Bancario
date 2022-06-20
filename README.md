@@ -1,4 +1,4 @@
-# Trabalho do 3º Bimestre
+# Trabalho Final do 1º Semestre
 ## Sistema Bancário - PostgreSQL
 
 ### Alunos: 
