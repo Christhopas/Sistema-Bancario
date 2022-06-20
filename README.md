@@ -32,6 +32,8 @@ A figura abaixo mostra o projeto lógico desenvolvido por nosso grupo. Para impl
 
 ![Projeto Lógico - "Sistema Bancário"](https://github.com/Christhopas/Sistema-Bancario/blob/main/Predefini%C3%A7%C3%B5es/projeto_logico_sb.PNG "Projeto Lógico")
 
+Para obter o PDF deste projeto lógico, [clique aqui](https://github.com/Christhopas/Sistema-Bancario/blob/main/projetologico.pdf "PDF - Projeto Lógico").
+
 ##
 
 ### Agradecimentos Finais:
